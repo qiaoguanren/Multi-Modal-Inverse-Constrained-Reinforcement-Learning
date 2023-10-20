@@ -1,0 +1,73 @@
+# transfer raw data to .xml files
+cd ./environment/install
+git clone https://gitlab.lrz.de/tum-cps/dataset-converters.git
+python -m src.main highD ../../../data/highD/raw/ ../../../data/highD/xmls/ --num_time_steps_scenario 1000
+python -m src.main inD ../../../data/inD/raw/ ../../../data/inD/xmls/ --num_time_steps_scenario 1000
+
+# validate the .xml files
+python -m commonroad_rl.tools.validate_cr -s ./commonroad_rl/tools/XML_commonRoad_XSD_2020a.xsd ../data/highD/xmls/*
+python -m commonroad_rl.tools.validate_cr -s ./commonroad_rl/tools/XML_commonRoad_XSD_2020a.xsd ../data/inD/xmls/*
+
+# compute the .pickle files
+python -m commonroad_rl.tools.pickle_scenario.xml_to_pickle -i ../data/highD/xmls -o ../data/highD/pickles
+python -m commonroad_rl.tools.pickle_scenario.xml_to_pickle -i ../data/inD/xmls -o ../data/inD/pickles
+
+# split the dataset
+python -m commonroad_rl.utils_run.split_dataset -i ../data/highD/pickles/problem -otrain ../data/highD/pickles/problem_train -otest ../data/highD/pickles/problem_test -tr_r 0.7
+python -m commonroad_rl.utils_run.split_dataset -i ../data/inD/pickles/problem -otrain ../data/inD/pickles/problem_train -otest ../data/inD/pickles/problem_test -tr_r 0.7
+
+# scatter dataset for multiple processes
+python -m commonroad_rl.tools.pickle_scenario.copy_files -i ../data/highD/pickles/problem_train -o ../data/highD/pickles/problem_train_split -f *.pickle -n 5
+
+# Visualize the dataset
+python -m commonroad_rl.tools.visualize_cr ./environment/commonroad_rl/tutorials/data/highD/xmls/DEU_LocationBLower-3_1_T-1.xml
+
+# git set remote
+git remote add origin https://git.uwaterloo.ca/ppoupart/constraint-learning.git
+git remote set-url origin https://git.uwaterloo.ca/ppoupart/constraint-learning.git
+
+# git push
+git push --set-upstream https://git.uwaterloo.ca/ppoupart/constraint-learning.git galen
+git push origin galen
+
+# git pull
+git pull https://git.uwaterloo.ca/ppoupart/constraint-learning.git galen --allow-unrelated-histories
+git pull origin galen
+
+# upload file
+scp /home/g233liu/PycharmProjects/constraint-RL-auto-driving/environment/commonroad_rl.zip galen@q.vectorinstitute.ai:/scratch/gobi2/galen/Projects/constraint-RL-auto-driving/environment/
+
+# download file
+scp -r galen@q.vectorinstitute.ai:/scratch/gobi2/galen/Projects/constraint-RL-auto-driving/save_model/PPO-highD/train_ppo_highD_no_collision-* /home/g233liu/PycharmProjects/constraint-RL-auto-driving/save_model/PPO-highD/
+
+# reinstall environment
+source /h/galen/miniconda3/bin/activate
+
+~/miniconda3/bin/conda init
+
+conda remove --name galen-cr37 --all
+
+rm -rf commonroad-rl/
+
+git clone https://gitlab.lrz.de/tum-cps/commonroad-rl.git
+
+cd commonroad-rl/
+
+conda env create -n galen-cr37 -f environment.yml
+
+git submodule init
+
+git submodule update --recursive || exit_with_error "Update submodules failed"
+
+bash scripts/install.sh -e galen-cr37 --no-root
+
+source activate galen-cr37
+
+pip install pytest
+
+pytest commonroad_rl/tests --scope unit module -m "not slow"
+
+export MUJOCO_PY_MUJOCO_PATH=/scratch1/PycharmProjects/constraint-learning-mixture-experts/.mujoco/mujoco210
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/scratch1/PycharmProjects/constraint-learning-mixture-experts/.mujoco/mujoco210/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
+

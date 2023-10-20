@@ -1,0 +1,311 @@
+{
+    "task": "PI-Lag-WallGrid",
+    "group": "PI-Lag",
+    "device": "cuda",
+    "verbose": 2,
+    "env": {
+        "config_path": "../mujuco_environment/custom_envs/envs/configs/mixture_WGW-v5.yaml",
+        "train_env_id": "WGW-v0",
+        "eval_env_id": "WGW-v0",
+        "constraint_id": 3,
+        "save_dir": "../save_model",
+        "cost_info_str": "cost",
+        "latent_info_str": "latent",
+        "use_cost": true,
+        "reward_gamma": 0.99,
+        "cost_gamma": 0.99,
+        "dont_normalize_obs": true,
+        "dont_normalize_reward": true,
+        "dont_normalize_cost": true,
+        "record_info_names": [
+            "x_position",
+            "y_position"
+        ],
+        "record_info_input_dims": [
+            1,
+            0
+        ],
+        "visualize_info_ranges": [
+            [
+                0,
+                6
+            ],
+            [
+                0,
+                6
+            ]
+        ],
+        "num_threads": 1
+    },
+    "running": {
+        "n_iters": 10,
+        "sample_rollouts": 10,
+        "n_eval_episodes": 10,
+        "save_every": 1,
+        "latent_dim": 4,
+        "render": false,
+        "store_by_game": true
+    },
+    "iteration": {
+        "stopping_threshold": 0.001,
+        "max_iter": 100,
+        "penalty_initial_value": 0.1,
+        "penalty_learning_rate": 0.1,
+        "gamma": 0.7
+    },
+    "multi_env": false
+}
+Saving to the file: ../save_model/PI-Lag-WallGrid/train_me_c-3_pi_lag_WGW-v5-Aug-09-2023-12_02-seed_123/
+Loading environment consumed memory: 8.05/358.21 and time 3.98:
+Setting model consumed memory: 0.85/359.06 and time: 0.51
+
+Beginning training
+
+The Policy Evaluation algorithm converged after 13 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 6], [2, 6], [3, 6], [4, 6], [4, 5], [4, 4], [5, 4], [5, 3], [5, 2], [5, 1], [6, 0], [0, 0]], actions: [0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 6, 0], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 16 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 10 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 9 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 0], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 4 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 0], rewards: 0.9.
+
+Stable at Iteration 7.
+Itr: 0, Training consumed memory: 9.89/368.95 and time 17.65
+Saving new best model
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 7        |
+|    length             | 7        |
+| run_iter              | 0        |
+| time(m)               | 0.314    |
+| timesteps             | 7        |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 0, Validating consumed memory: 17.78/386.73 and time 1.19
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 1, Training consumed memory: 0.00/386.73 and time 0.65
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 1        |
+| time(m)               | 0.33     |
+| timesteps             | 15       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 1, Validating consumed memory: 8.29/395.02 and time 0.32
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 2, Training consumed memory: 0.00/395.02 and time 0.61
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 2        |
+| time(m)               | 0.345    |
+| timesteps             | 24       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 2, Validating consumed memory: 8.18/403.20 and time 0.28
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 0], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 3, Training consumed memory: 0.00/403.20 and time 0.57
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 3        |
+| time(m)               | 0.359    |
+| timesteps             | 34       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 3, Validating consumed memory: 8.30/411.50 and time 0.29
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 3], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 4, Training consumed memory: 0.00/411.51 and time 0.56
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 4        |
+| time(m)               | 0.375    |
+| timesteps             | 45       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 4, Validating consumed memory: -6.22/405.29 and time 0.36
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 3], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 5, Training consumed memory: 0.01/405.30 and time 0.55
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 5        |
+| time(m)               | 0.388    |
+| timesteps             | 57       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 5, Validating consumed memory: 3.40/408.69 and time 0.28
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 3], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 6, Training consumed memory: 0.00/408.69 and time 0.54
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 6        |
+| time(m)               | 0.402    |
+| timesteps             | 70       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 6, Validating consumed memory: 3.25/411.94 and time 0.30
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 5], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 7, Training consumed memory: 0.00/411.94 and time 0.56
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 7        |
+| time(m)               | 0.416    |
+| timesteps             | 84       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 7, Validating consumed memory: 3.44/415.39 and time 0.28
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 3], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 8, Training consumed memory: 0.00/415.39 and time 0.65
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 8        |
+| time(m)               | 0.433    |
+| timesteps             | 99       |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 8, Validating consumed memory: 3.55/418.93 and time 0.33
+
+The Policy Evaluation algorithm converged after 1 iterations
+Performance: dual 0.10000000149011612, cost: 0.0, states: [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 0], [0, 0]], actions: [0, 2, 2, 2, 2, 2, 6, 3], rewards: 0.9.
+
+Stable at Iteration 1.
+Itr: 9, Training consumed memory: 0.00/418.93 and time 0.57
+------------------------------------
+| best_true/            |          |
+|    best_reward        | 0.9      |
+| forward/              |          |
+|    cumulative rewards | 0.9      |
+|    iterations         | 1        |
+|    length             | 7        |
+| run_iter              | 9        |
+| time(m)               | 0.447    |
+| timesteps             | 115      |
+| true/                 |          |
+|    mean_nc_reward     | 0.9      |
+|    mean_reward        | 0.9      |
+|    std_nc_reward      | 0        |
+|    std_reward         | 0        |
+------------------------------------
+Itr: 9, Validating consumed memory: 6.05/424.98 and time 0.30
