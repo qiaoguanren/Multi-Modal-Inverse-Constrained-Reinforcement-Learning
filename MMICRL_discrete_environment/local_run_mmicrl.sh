@@ -8,5 +8,5 @@ source /scratch1/miniconda3/bin/activate
 conda activate cn-py37
 pip install -e ./mujuco_environment/
 cd ./interface/
-python train_mmicrl.py ../config/mujoco_mixture_WGW-v0/train_MEICRL_WGW-v0.yaml -s 123 -n 1 -l "$log_dir"
+python train_mmicrl.py ../config/mujoco_mixture_WGW-v0/train_MMICRL_WGW-v0.yaml -s 123 -n 1 -l "$log_dir"
 cd ../
