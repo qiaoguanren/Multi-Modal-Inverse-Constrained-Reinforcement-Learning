@@ -1,47 +1,82 @@
-# Inverse Constraint RL for Auto-Driving
+# Multi-Modal-Inverse-Constrained-Reinforcement-Learning
 
-## commonroad_rl
+This is the code for the paper [Multi-Modal Inverse Constrained Reinforcement Learning from a Mixture of Demonstrations](https://neurips.cc/virtual/2023/poster/72837) published in NeurIPS 2023. Note that:
+1. Our method relies on [MuJoCo](https://mujoco.org/) and [CommonRoad RL](https://commonroad.in.tum.de/commonroad-rl).
+2. The implementation of the algorithm is based on the code from [ICRL-benchmark](https://github.com/Guiliang/ICRL-benchmarks-public/tree/main).
+
+## Create Conda Environment
+1. please install conda (cuda-11.6)
+2. install [Pytorch (version==1.13.0)](https://pytorch.org) in the conda env.
 ```
-mkdir ./environment
-```
-This project applies the commonroad_rl environment, please clone their project into to folder ./environment. please refer to the environment setting at
-''https://gitlab.lrz.de/tum-cps/commonroad-rl/-/tree/master/''
-
-## stable_baseline3
-This project utilizes some implementation in stable_baseline3, but no worry, I have included their code into this project
-
-
-## Running
-To run the code, 
-
-### create env
-```
-mkdir ./save_model
-mkdir ./evaluate_model
-source /pkgs/anaconda3/bin/activate
-conda env create -n cn-py37 -f python_environment.yml
+conda env create -n cn-py37 python=3.7 -f python_environment.yml
 conda activate cn-py37
 ```
-###  Setup [mujoco](https://github.com/openai/mujoco-py)
+
+## Set Continuous Environment
+1. set MuJoCo (you can get help from [mujoco-tutorial](https://github.com/Guiliang/ICRL-benchmarks-public/blob/main/virtual_env_tutorial.md))
 ```
 pip install -U 'mujoco-py<2.2,>=2.1'
 pip install -e ./mujuco_environment
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/h/galen/.mujoco/mujoco210/bin
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
+export MUJOCO_PY_MUJOCO_PATH=YOUR_MUJOCO_DIR/.mujoco/mujoco210
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:YOUR_MUJOCO_DIR/.mujoco/mujoco210/bin:/usr/lib/nvidia
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 ```
-###  Setup [commonroad-rl](https://gitlab.lrz.de/tum-cps/commonroad-rl)
-```
-mkdir ./commonroad_environment
-```
-###  prepare the data
-```
-```
+2. set commonroad, you can follow the [commonroad tutorial](https://github.com/Guiliang/ICRL-benchmarks-public/blob/main/realisitic_env_tutorial.md)
 
-### start the training
+## Generate Expert Dataset
+For the discrete environment:
 ```
-source your-conda-activate
-conda activate your-env
-cd ./interface
-python train_commonroad_ppo.py ../config/train_ppo_highD.yaml -d 1  # for debug mode
-python train_commonroad_ppo.py ../config/train_ppo_highD.yaml # for running
+cd MMICRL_discrete_environment
+./data_generation.sh
+```
+For the continuous environment:
+```
+cd MMICRL_continuous_environment
+./local_run_ppo.sh
+```
+After training pi/ppo algorithm, intermediate results will be saved in the save_model folder. You should note that when running generate_data_for_constraint_inference.py, the parameter needs to specify the file name of where the intermediate results are stored.
+
+## Training
+```
+cd MMICRL_discrete_environment
+./local_run_mmicrl.sh
+```
+or
+```
+cd MMICRL_continuous_environment
+./server_run_mmicrl_1.sh
+```
+I train the MMICRL model with 4 × RTX 3090 in continuous environments. For discrete environment simulations, the CPU is also capable of running code rapidly.
+
+## Visualization
+```
+cd MMICRL_discrete_environment/MMICRL_continuous_environment
+cd interface
+python generate_running_plots.py
+```
+you can see the result in the plot_results folder.
+
+## Welcome to Cite and Star
+If you find this idea helpful, please use the citation:
+```
+@inproceedings{
+qiao2023MMICRL,
+title={Multi-Modal Inverse Constrained Reinforcement Learning from a Mixture of Demonstrations},
+author={Guanren Qiao and Guiliang Liu and Pascal Poupart and Zhiqiang Xu},
+booktitle={Annual Conference on Neural Information Processing Systems},
+year={2023},
+url={https://openreview.net/forum?id=4mPiqh4pLb}
+}
+```
+Besides, you can also consider cite this paper:
+```
+@inproceedings{
+liu2023benchmarking,
+title={Benchmarking Constraint Inference in Inverse Reinforcement Learning},
+author={Guiliang Liu and Yudong Luo and Ashish Gaurav and Kasra Rezaee and Pascal Poupart},
+booktitle={The Eleventh International Conference on Learning Representations },
+year={2023},
+url={https://openreview.net/forum?id=vINj_Hv9szL}
+}
 ```
