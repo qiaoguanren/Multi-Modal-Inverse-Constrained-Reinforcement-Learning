@@ -58,7 +58,7 @@ python generate_running_plots.py
 you can see the result in the plot_results folder.
 
 ## Welcome to Cite and Star
-If you find this idea helpful, please use the citation:
+If you find this idea helpful, please cite it:
 ```
 @inproceedings{
 qiao2023MMICRL,
@@ -69,7 +69,7 @@ year={2023},
 url={https://openreview.net/forum?id=4mPiqh4pLb}
 }
 ```
-Besides, you can also consider cite this paper:
+Besides, you can also consider citing this paper:
 ```
 @inproceedings{
 liu2023benchmarking,
