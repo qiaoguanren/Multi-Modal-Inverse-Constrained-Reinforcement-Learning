@@ -1,0 +1,306 @@
+{
+    "task": "MEICRL_HCWithPos-v0",
+    "group": "MEICRL",
+    "device": "cuda",
+    "verbose": 2,
+    "env": {
+        "config_path": null,
+        "train_env_id": "HCWithPos-v0",
+        "eval_env_id": "HCWithPos-v0",
+        "constraint_id": null,
+        "save_dir": "../save_model",
+        "cost_info_str": "cost",
+        "latent_info_str": "latent",
+        "use_cost": true,
+        "reward_gamma": 0.99,
+        "cost_gamma": 0.99,
+        "dont_normalize_obs": false,
+        "dont_normalize_reward": false,
+        "dont_normalize_cost": false,
+        "record_info_names": [
+            "xpos"
+        ],
+        "record_info_input_dims": [
+            0
+        ],
+        "visualize_info_ranges": [
+            [
+                -30,
+                30
+            ]
+        ],
+        "num_threads": 1
+    },
+    "running": {
+        "n_iters": 20,
+        "n_eval_episodes": 2,
+        "save_every": 1,
+        "max_seq_length": 10,
+        "expert_rollouts": 10,
+        "sample_rollouts": 2,
+        "store_sample_num": null,
+        "expert_path": "../data/expert_data/Mixture-HCWithPos-v0/",
+        "use_buffer": false,
+        "store_by_game": true,
+        "init_density": false
+    },
+    "PPO": {
+        "policy_name": "TwoCriticsMlpPolicy",
+        "learning_rate": 5e-05,
+        "n_steps": 500,
+        "n_epochs": 2,
+        "reward_gamma": 0.99,
+        "reward_gae_lambda": 0.95,
+        "cost_gamma": 0.99,
+        "cost_gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "ent_coef": 0.0,
+        "reward_vf_coef": 0.5,
+        "cost_vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "use_sde": false,
+        "sde_sample_freq": -1,
+        "target_kl": 0.01,
+        "shared_layers": null,
+        "policy_layers": [
+            64,
+            64
+        ],
+        "reward_vf_layers": [
+            64,
+            64
+        ],
+        "cost_vf_layers": [
+            64,
+            64
+        ],
+        "batch_size": 64,
+        "eval_every": 2048,
+        "use_curiosity_driven_exploration": false,
+        "warmup_timesteps": false,
+        "reset_policy": false,
+        "forward_timesteps": 3000,
+        "clip_range_reward_vf": null,
+        "clip_range_cost_vf": null,
+        "penalty_initial_value": 10,
+        "penalty_learning_rate": 0.01,
+        "budget": 0,
+        "proportional_control_coeff": 10,
+        "integral_control_coeff": 0.0001,
+        "derivative_control_coeff": 0,
+        "pid_delay": 1,
+        "proportional_cost_ema_alpha": 0.5,
+        "derivative_cost_ema_alpha": 0.5,
+        "log_cost": true,
+        "contrastive_augment_type": "reward augmentation",
+        "loss_type": "probing_vectors"
+    },
+    "CN": {
+        "cn_learning_rate": 0.0005,
+        "density_learning_rate": 0.0005,
+        "cn_reg_coeff": 0.1,
+        "cn_layers": [
+            64,
+            64,
+            64
+        ],
+        "cn_batch_size": 64,
+        "cn_obs_select_name": null,
+        "cn_acs_select_name": null,
+        "no_importance_sampling": true,
+        "per_step_importance_sampling": false,
+        "clip_obs": 1000,
+        "cn_normalize": false,
+        "cn_target_kl_old_new": 10,
+        "cn_target_kl_new_old": 2.5,
+        "train_gail_lambda": false,
+        "cn_eps": 1e-05,
+        "backward_iters": 2,
+        "anneal_clr_by_factor": 0.6,
+        "latent_dim": 2,
+        "use_expert_negative": true,
+        "negative_weight": 0.5,
+        "sample_probing_points": false,
+        "n_probings": 10,
+        "reverse_probing": false,
+        "contrastive_weight": 0.5,
+        "recon_obs": false
+    },
+    "multi_env": false
+}
+Saving to the file: ../save_model/MEICRL_HCWithPos-v0/debug-part-train_MEICRL_HCWithPos-v0_cbs-64_lr-5e-5_ft-2e5_exp-neg-coef-5e-1_piv-1e1_plr-1e-2_weight-5e-1-Apr-27-2023-21_25-seed_123/
+Loading expert data from ../data/expert_data/Mixture-HCWithPos-v0/.
+Expert_mean_reward: 5370.292687757772 and Expert_mean_length: 71.42857142857143.
+Loading environment consumed memory: 25.34/1157.66 and time 8.92
+The observed features are: ['(pls visit mujoco xml settings at: https://www.gymlibrary.ml/environments/mujoco/)']
+The expert features means are: ['-37.58338', '-0.07449', '0.14456', '0.12408', '-0.01877', '0.04845', '-0.06404', '-0.15000', '-0.15950', '-1.62038', '-0.08517', '-0.06129', '0.32599', '-0.32489', '0.01653', '0.03206', '0.09400', '0.04515']
+is_discrete False
+Selecting obs features are : all
+Selecting acs features are : all
+PPO layers are: {'pi': [64, 64], 'vf': [64, 64], 'cvf': [64, 64]}
+PPO layers are: {'pi': [64, 64], 'vf': [64, 64], 'cvf': [64, 64]}
+Setting model consumed memory: 2045.83/3203.49 and time 1.30
+
+Beginning training
+Training PPO model consumed memory: 780.67/3984.16 and time 23.29
+Sampling consumed memory: 0.77/3984.93 and time 2.63
+The updated learning rate is density: 0.0005/ CN: 0.0005.
+expert game: 7, cid: 0, log_sum: [-33759.97  -34349.086]
+expert game: 5, cid: 0, log_sum: [-33782.246 -34326.81 ]
+expert game: 3, cid: 0, log_sum: [-33788.586 -34320.47 ]
+expert game: 1, cid: 0, log_sum: [-33811.66  -34297.395]
+expert game: 9, cid: 0, log_sum: [-33812.566 -34296.492]
+expert game: 0, cid: 1, log_sum: [-34188.086 -33920.965]
+expert game: 8, cid: 1, log_sum: [-34185.54 -33923.51]
+expert game: 6, cid: 1, log_sum: [-34184.17 -33924.88]
+expert game: 2, cid: 1, log_sum: [-34182.18  -33926.875]
+expert game: 4, cid: 1, log_sum: [-34170.27 -33938.78]
+Predicting probing points.
+aid: 0, pivot_vectors is [-6.3908763  -0.11198787  0.33065936  0.08141812 -0.00909547 -0.02505768
+  0.21165201 -0.20375197  0.00960919  0.29160896 -0.08493972 -0.14062998
+  5.5178366  -5.9325013  -5.001711    4.0309973  -0.26806298 -2.2424173
+ -0.09696268 -0.08324266 -0.45407957 -0.18014759 -0.54392177 -0.24520007]
+['cid-0_0.weight:-0.004247383680194616', 'cid-0_0.bias:0.0004517077177297324', 'cid-0_2.weight:0.008472137153148651', 'cid-0_2.bias:0.0011434336192905903', 'cid-0_4.weight:0.007866667583584785', 'cid-0_4.bias:0.002516672480851412', 'cid-0_6.weight:0.39795392751693726', 'cid-0_6.bias:0.3430294096469879', 'cid-1_0.weight:0.0', 'cid-1_0.bias:0.0', 'cid-1_2.weight:0.0', 'cid-1_2.bias:0.0', 'cid-1_4.weight:0.0', 'cid-1_4.bias:0.0', 'cid-1_6.weight:0.0', 'cid-1_6.bias:0.0']
+aid: 1, pivot_vectors is [-0.20608759  0.05471877  1.0030507   0.0485361   0.12207818 -0.10656124
+  0.22344418 -0.14560643  0.05157565  0.43972412  0.1726487   2.5678108
+  0.7309268  -4.064213   -2.3583808   5.521722   -2.1821961  -1.307379
+ -0.26701045 -0.08085518 -0.32478824  0.32086     0.02616386 -0.08431563]
+['cid-0_0.weight:0.0', 'cid-0_0.bias:0.0', 'cid-0_2.weight:0.0', 'cid-0_2.bias:0.0', 'cid-0_4.weight:0.0', 'cid-0_4.bias:0.0', 'cid-0_6.weight:0.0', 'cid-0_6.bias:0.0', 'cid-1_0.weight:-0.0065697794780135155', 'cid-1_0.bias:0.0006197979673743248', 'cid-1_2.weight:0.007184982765465975', 'cid-1_2.bias:0.000956193427555263', 'cid-1_4.weight:0.007227381691336632', 'cid-1_4.bias:0.00071440648753196', 'cid-1_6.weight:-0.47979703545570374', 'cid-1_6.bias:-0.266419917345047']
+Training CN model consumed memory: 17.55/4002.48 and time 98.77
+Evaluation consumed memory: 5.92/4008.40 and time 3.12
+Saving new best model
+
+
+
+---------------------------------------------------------
+| backward/                             |               |
+|    cid:0/cn_loss                      | 1.92          |
+|    cid:0/e_loss                       | 0.381         |
+|    cid:0/e_pred_max                   | 0.849         |
+|    cid:0/e_pred_mean                  | 0.687         |
+|    cid:0/e_pred_min                   | 0.515         |
+|    cid:0/n_loss                       | 1.92          |
+|    cid:0/n_pred_max                   | 0.677         |
+|    cid:0/n_pred_mean                  | 0.57          |
+|    cid:0/n_pred_min                   | 0.517         |
+|    cid:0/r_loss                       | 0.0742        |
+|    cid:1/cn_loss                      | 2.03          |
+|    cid:1/e_loss                       | 1.26          |
+|    cid:1/e_pred_max                   | 0.565         |
+|    cid:1/e_pred_mean                  | 0.301         |
+|    cid:1/e_pred_min                   | 0.123         |
+|    cid:1/n_loss                       | 2.03          |
+|    cid:1/n_pred_max                   | 0.56          |
+|    cid:1/n_pred_mean                  | 0.478         |
+|    cid:1/n_pred_min                   | 0.383         |
+|    cid:1/r_loss                       | 0.122         |
+|    density_loss                       | 32.2          |
+|    robust_test_flag                   | 0             |
+| best_true/                            |               |
+|    best_reward                        | 1.77          |
+| forward/                              |               |
+|    aid:0/approx_kl                    | 9.74869e-05   |
+|    aid:0/average_cost                 | 0.56307375    |
+|    aid:0/clip_fraction                | 0             |
+|    aid:0/clip_range                   | 0.2           |
+|    aid:0/cost_explained_variance      | 0.0046        |
+|    aid:0/cost_value_loss              | 0.812         |
+|    aid:0/diversity_explained_variance | nan           |
+|    aid:0/diversity_value_loss         | 0             |
+|    aid:0/early_stop_epoch             | 2             |
+|    aid:0/entropy_loss                 | -8.51         |
+|    aid:0/learning_rate                | 5e-05         |
+|    aid:0/loss                         | 0.723         |
+|    aid:0/mean_cost_advantages         | 0.7941382     |
+|    aid:0/mean_diversity_advantages    | 0.0           |
+|    aid:0/mean_reward_advantages       | 0.6475275     |
+|    aid:0/n_updates                    | 12            |
+|    aid:0/nu                           | 10.1          |
+|    aid:0/nu_loss                      | -5.66         |
+|    aid:0/policy_gradient_loss         | -0.000169     |
+|    aid:0/reward_explained_variance    | -0.767        |
+|    aid:0/reward_value_loss            | 0.672         |
+|    aid:0/rollout/ep_a_id_max          | 0             |
+|    aid:0/rollout/ep_a_id_mean         | 0             |
+|    aid:0/rollout/ep_a_id_min          | 0             |
+|    aid:0/rollout/ep_constraint_max    | 1             |
+|    aid:0/rollout/ep_constraint_mean   | 0.667         |
+|    aid:0/rollout/ep_constraint_min    | 0             |
+|    aid:0/rollout/ep_len_mean          | 1e+03         |
+|    aid:0/rollout/ep_rew_mean          | 280           |
+|    aid:0/rollout/ep_reward_nc_max     | 296           |
+|    aid:0/rollout/ep_reward_nc_mean    | 192           |
+|    aid:0/rollout/ep_reward_nc_min     | 74.6          |
+|    aid:0/std                          | 1             |
+|    aid:0/time/fps                     | 253           |
+|    aid:0/time/iterations              | 7             |
+|    aid:0/time/time_elapsed            | 11            |
+|    aid:0/time/total_timesteps         | 3000          |
+|    aid:0/total_cost                   | 281.53687     |
+|    aid:1/approx_kl                    | -0.0002624066 |
+|    aid:1/average_cost                 | 0.77327037    |
+|    aid:1/clip_fraction                | 0             |
+|    aid:1/clip_range                   | 0.2           |
+|    aid:1/cost_explained_variance      | -0.128        |
+|    aid:1/cost_value_loss              | 0.753         |
+|    aid:1/diversity_explained_variance | nan           |
+|    aid:1/diversity_value_loss         | 0             |
+|    aid:1/early_stop_epoch             | 2             |
+|    aid:1/entropy_loss                 | -8.51         |
+|    aid:1/learning_rate                | 5e-05         |
+|    aid:1/loss                         | 0.468         |
+|    aid:1/mean_cost_advantages         | 0.7627221     |
+|    aid:1/mean_diversity_advantages    | 0.0           |
+|    aid:1/mean_reward_advantages       | 0.40527326    |
+|    aid:1/n_updates                    | 12            |
+|    aid:1/nu                           | 10.1          |
+|    aid:1/nu_loss                      | -7.77         |
+|    aid:1/policy_gradient_loss         | -0.000174     |
+|    aid:1/reward_explained_variance    | -0.12         |
+|    aid:1/reward_value_loss            | 0.296         |
+|    aid:1/rollout/ep_a_id_max          | 1             |
+|    aid:1/rollout/ep_a_id_mean         | 1             |
+|    aid:1/rollout/ep_a_id_min          | 1             |
+|    aid:1/rollout/ep_constraint_max    | 1             |
+|    aid:1/rollout/ep_constraint_mean   | 0.667         |
+|    aid:1/rollout/ep_constraint_min    | 0             |
+|    aid:1/rollout/ep_len_mean          | 1e+03         |
+|    aid:1/rollout/ep_rew_mean          | 308           |
+|    aid:1/rollout/ep_reward_nc_max     | 233           |
+|    aid:1/rollout/ep_reward_nc_mean    | 172           |
+|    aid:1/rollout/ep_reward_nc_min     | 51            |
+|    aid:1/std                          | 1             |
+|    aid:1/time/fps                     | 262           |
+|    aid:1/time/iterations              | 7             |
+|    aid:1/time/time_elapsed            | 11            |
+|    aid:1/time/total_timesteps         | 3000          |
+|    aid:1/total_cost                   | 386.6352      |
+| run_iter                              | 0             |
+| running time(m)                       | 2.35          |
+| timesteps                             | 6e+03         |
+| true/                                 |               |
+|    mean_nc_reward                     | 1.77          |
+|    mean_reward                        | 1.77          |
+|    std_nc_reward                      | 0.194         |
+|    std_reward                         | 0.194         |
+---------------------------------------------------------
+Training PPO model consumed memory: 4.41/4012.81 and time 27.86
+Sampling consumed memory: 0.46/4013.27 and time 2.68
+The updated learning rate is density: 0.00029999999999999987/ CN: 0.00029999999999999987.
+expert game: 1, cid: 0, log_sum: [-33261.797 -34847.305]
+expert game: 3, cid: 0, log_sum: [-33273.047 -34836.055]
+expert game: 9, cid: 0, log_sum: [-33311.83  -34797.273]
+expert game: 7, cid: 0, log_sum: [-33312.812 -34796.29 ]
+expert game: 5, cid: 0, log_sum: [-33346.266 -34762.84 ]
+expert game: 8, cid: 1, log_sum: [-33583.117 -34525.96 ]
+expert game: 0, cid: 1, log_sum: [-33580.11 -34528.97]
+expert game: 2, cid: 1, log_sum: [-33571.92  -34537.156]
+expert game: 4, cid: 1, log_sum: [-33567.82  -34541.258]
+expert game: 6, cid: 1, log_sum: [-33566.46  -34542.617]
+Predicting probing points.
+aid: 0, pivot_vectors is [-6.0315788e-01 -9.6161418e-02  2.8505266e-01 -1.3687837e-01
+ -1.8137514e-03  4.5061544e-02  4.9549364e-02 -2.8595327e-06
+ -1.4283368e-02 -6.3689727e-01  3.6120006e-01 -1.7012422e-01
+ -3.1739264e+00  2.8573954e+00 -1.6492236e+00 -6.9437714e+00
+  9.0126028e+00  5.0653424e+00 -4.3742657e-03  1.2179150e-01
+  1.1670832e-01 -5.1395380e-01 -5.8949125e-01  1.2868543e-01]
