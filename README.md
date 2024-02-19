@@ -25,6 +25,10 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 2. set commonroad, you can follow the [commonroad tutorial](https://github.com/Guiliang/ICRL-benchmarks-public/blob/main/realisitic_env_tutorial.md)
 
 ## Generate Expert Dataset
+```
+mkdir data
+mkdir ~/data/expert_data
+```
 For the discrete environment:
 ```
 ./local_run_pi.sh
