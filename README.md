@@ -60,7 +60,7 @@ If you find this idea helpful, please cite it:
 qiao2023MMICRL,
 title={Multi-Modal Inverse Constrained Reinforcement Learning from a Mixture of Demonstrations},
 author={Guanren Qiao and Guiliang Liu and Pascal Poupart and Zhiqiang Xu},
-booktitle={Annual Conference on Neural Information Processing Systems},
+booktitle={Advances in Neural Information Processing Systems, (NeurIPS)},
 year={2023},
 url={https://openreview.net/forum?id=4mPiqh4pLb}
 }
@@ -71,7 +71,7 @@ Besides, you can also consider citing this paper:
 liu2023benchmarking,
 title={Benchmarking Constraint Inference in Inverse Reinforcement Learning},
 author={Guiliang Liu and Yudong Luo and Ashish Gaurav and Kasra Rezaee and Pascal Poupart},
-booktitle={The Eleventh International Conference on Learning Representations },
+booktitle={International Conference on Learning Representations, (ICLR)},
 year={2023},
 url={https://openreview.net/forum?id=vINj_Hv9szL}
 }
